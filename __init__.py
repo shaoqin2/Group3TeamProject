@@ -25,10 +25,10 @@ def getWord():
 
 @app.route("/postWord",methods=["GET","POST"])
 def postWord():
-	if 'lat' in request.args and 'lng' in request.args and 'word' in request.args and 'definition' in request.args:
+	if 'lat' in request.args and 'long' in request.args and 'word' in request.args and 'definition' in request.args:
 		try:
 			lat = float(request.args['lat'])
-			lng = float(request.args['lng'])
+			lng = float(request.args['long'])
 			word = str(request.args['word'])
 			definition = str(request.args['definition'])
 			return pword(lat,lng,word,definition)
