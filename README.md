@@ -10,7 +10,7 @@
 	
 
 #### Return Format **JSON STRING**:
-	* __{words[  
+		{"words":[  
 				{  
 					"lat":*latitude of the word*  
 					"long":*longitude of the word*  
@@ -23,5 +23,6 @@
 				}  
 			
 			
-			]}__  
+			]
+		}
 	 
