@@ -8,18 +8,18 @@
 	* radius is the range of words the user want to display, the API do strict circular calculation and return all the words within the range
 	* ids are the words the user already have in there view. **There could be multiple ids, the API take it as an array**
 #### Return Format **JSON STRING**:
-* __{words[  
-			{  
-			"lat":*latitude of the word*  
-			"long":*longitude of the word*  
-			"name":*the word*  
-			"definition":*definition of the word*  
-			"id":*UUID of the word*  
-			},  
-			{  
-			 etc....  
-			}  
-		
-		
-		]}__  
- 
+	* __{words[  
+				{  
+					"lat":*latitude of the word*  
+					"long":*longitude of the word*  
+					"name":*the word*  
+					"definition":*definition of the word*  
+					"id":*UUID of the word*  
+				},  
+				{  
+					etc....  
+				}  
+			
+			
+			]}__  
+	 
