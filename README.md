@@ -3,6 +3,6 @@
 **45.55.248.135**
 ### Endpoint      
 
-*/getWord?long=REAL&lat=REAL&radius=REAL&ids=INT
+*getWord?long=REAL&lat=REAL&radius=REAL&ids=INT
 long and lat parameters are the geological location of current user. Both of them are floats and should be limited in Urbana/Champaign Area. Otherwise there will be no words.
  
