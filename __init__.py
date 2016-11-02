@@ -1,6 +1,6 @@
 from flask import Flask, request
 from connectdb import connection
-from findword import fword
+from findword import fword,pword
 app = Flask(__name__)
 
 if __name__ == "__main__":
@@ -23,4 +23,17 @@ def getWord():
 	else:
 		return "bad request"
 
+@app.route("/postWord",methods=["GET","POST"])
+def postWord():
+	if 'lat' in request.args and 'lng' in request.args and 'word' in request.args and 'definition' in request.args:
+		try:
+			lat = float(request.args['lat'])
+			lng = float(request.args['lng'])
+			word = str(request.args['word'])
+			definition = str(request.args['definition'])
+			return pword(lat,lng,word,definition)
+		except Exception as e:
+			return str(e)
+	else:
+		return "badPost"
 
