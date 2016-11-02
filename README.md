@@ -6,7 +6,7 @@
 * __/getWord?long=REAL&lat=REAL&radius=REAL&ids=INT__  
 	* long and lat parameters are the geological location of current user. Both of them are floats and should be limited in Urbana/Champaign Area. Otherwise there will be no words.  
 	* radius is the range of words the user want to display, the API do strict circular calculation and return all the words within the range
-	* ids are the words the user already have in there view. **There could be multiple ids, the API take it as an array**
+	* ids are the words the user already have in there view. **There could be multiple ids, the API take it as an array**  
 #### Return Format **JSON STRING**:
 	* __{words[  
 				{  
