@@ -12,18 +12,19 @@
 #### Return **JSON STRING** Format :
 		{"words":[  
 				{  
-					"lat":*latitude of the word*  
-					"long":*longitude of the word*  
-					"name":*the word*  
-					"definition":*definition of the word*  
-					"id":*UUID of the word*  
+					"lat" : latitude of the word  
+					"long" : longitude of the word  
+					"name" : the word  
+					"definition" : definition of the word  
+					"id" : UUID of the word  
 				},  
 				{  
 					etc....  
-				}  
-			
-			
-			]
+				},
+				{
+					etc....
+				},
+				]
 		}
 	 
 ### Endpoint /postWord:      
