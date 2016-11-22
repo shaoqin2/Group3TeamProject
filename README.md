@@ -57,10 +57,11 @@ Parameter| Type | Value
 Value | information
 --- | ---
 success | the word is posted into database successfully
-bad request | something went wrong with the post format
+bad request | something went wrong with the post format  
 
 
-### Register /register  
+
+### POST /register  
 Register a new user in the database
 
 **Request Parameters:**  
@@ -76,10 +77,11 @@ Value | information
 --- | ---
 User successfully registered as {{username}} | Success 
 username already taken | the username is taken
-the parameters are wrong! | Wrong parameters
+the parameters are wrong! | Wrong parameters  
 
 
-### Login /login  
+
+### POST /login  
 login a user
 
 **Request Parameters:**  
