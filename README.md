@@ -1,34 +1,60 @@
-# Group3TeamProject  WordPickingGame
-## API reference       
-**45.55.248.135**
-### Endpoint /getWord:      
-#### Request Format:
-* __/getWord?long=FLOAT&lat=FLOAT&radius=FLOAT&ids=INT__  
-	* long and lat parameters are the geological location of current user. Both of them are floats and should be limited in Urbana/Champaign Area. Otherwise there will be no words.  
-	* radius is the range of words the user want to display, the API do strict circular calculation and return all the words within the range
-	* ids are the words the user already have in there view. **There could be multiple ids, the API take it as an array**  
-	
+# Group3TeamProject Documentation  
 
-#### Return **JSON STRING** Format :
-		{"words":[  
-				{  
-					"lat":*latitude of the word*  
-					"long":*longitude of the word*  
-					"name":*the word*  
-					"definition":*definition of the word*  
-					"id":*UUID of the word*  
-				},  
-				{  
-					etc....  
-				}  
-			
-			
-			]
-		}
-	 
-### Endpoint /postWord:      
-#### Request Format:
-* __/postWord?long=FLOAT&lat=FLOAT&word=STRING&definition=STRING__  
-	* long and lat parameters are the geological location of the word. Both of them are floats.
-	* if the backend successfully posts the word into the database, it will return success as a string
-	
+This is the documentation for the word picking game. The backend keep track of all the geological words and user information
+
+# API reference  
+
+45.55.248.135
+
+## Endpoints  
+
+### GET /getWord
+
+Get information of all the words in a certain area  
+
+**Request Parameters:**  
+
+Parameter| Type | Value
+--- | --- | ---
+`long`| float | the geological longitude of the user(champaign urbana area)
+`lat`| float | the geological latitude of the user(champaign urbana area)
+`radius`| float | the radius of the circle that the words would be in
+`ids`| integer list | the ids of the the words the user does not want. could have multiple ids parameter. API take it as a list  
+
+**Return JSON format:**  
+
+    {"words":[  
+                {  
+                    "lat" : latitude of the word  
+                    "long" : longitude of the word  
+                    "name" : the word  
+                    "definition" : definition of the word  
+                    "id" : UUID of the word  
+                },  
+                {  
+                    etc....  
+                },
+                {
+                    etc....
+                },
+                ]
+    }  
+
+### POST /postWord  
+Post a word into the database with all related information  
+
+**Request Parameters:**  
+
+Parameter| Type | Value
+--- | --- | ---
+`long`| float | the geological longitude of the word(champaign urbana area)
+`lat`| float | the geological latitude of the word(champaign urbana area)
+`word`| string | the word
+`definition`| string | definition of the word  
+
+**Return format:**  
+
+Value | information
+--- | ---
+success | the word is posted into database successfully
+bad request | something went wrong with the post format
