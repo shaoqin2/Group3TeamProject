@@ -58,3 +58,40 @@ Value | information
 --- | ---
 success | the word is posted into database successfully
 bad request | something went wrong with the post format
+
+
+### Register /register  
+Register a new user in the database
+
+**Request Parameters:**  
+
+Parameter| Type | Value
+--- | --- | ---
+`username`| string | the username, maximum 50 characters
+`password`| string | raw password, not hashed  
+
+**Return format:**  
+
+Value | information
+--- | ---
+User successfully registered as {{username}} | Success 
+username already taken | the username is taken
+the parameters are wrong! | Wrong parameters
+
+
+### Login /login  
+login a user
+
+**Request Parameters:**  
+
+Parameter| Type | Value
+--- | --- | ---
+`username`| string | the username, maximum 50 characters
+`password`| string | raw password, not hashed  
+
+**Return format:**  
+
+Value | information
+--- | ---
+User successfully logged in as {{username}}} | Success 
+wrong username or password | wrong credential

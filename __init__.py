@@ -49,7 +49,7 @@ def login():
 			if lg(username,password):
 				session['logged_in'] = True
 				session['username'] = username
-				return "User is now logged_in"
+				return "User successfully logged in as "+username
 			else:
 				return "wrong username or password"
 		else:
@@ -65,7 +65,7 @@ def register():
 			if rg(username,password):
 				return ("User successfully registered as "+username)
 			else:
-				return ("Failed to register username")
+				return ("username already taken")
 		else:
 			return("the parameters are wrong!")
 	except Exception as e:
