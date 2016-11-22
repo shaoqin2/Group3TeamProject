@@ -1,6 +1,8 @@
-from flask import Flask, request
+from flask import Flask, request, url_for, session, redirect
 from connectdb import connection
 from findword import fword,pword
+from userlogin import register as rg, login as lg
+
 app = Flask(__name__)
 
 if __name__ == "__main__":
@@ -36,4 +38,56 @@ def postWord():
 			return str(e)
 	else:
 		return "badPost"
+		
+		
+@app.route("/login",methods=["GET","POST"])
+def login():
+	try:
+		if 'username' in request.args and 'password' in request.args:
+			username = str(request.args['username'])
+			password = str(request.args['password'])
+			if lg(username,password):
+				session['logged_in'] = True
+				session['username'] = username
+				return "User is now logged_in"
+			else:
+				return "wrong username or password"
+		else:
+			return "bad request"
+	except Exception as e:
+		return (str(e))
+@app.route("/register",methods=["GET","POST"])
+def register():
+	try:
+		if 'username' in request.args and 'password' in request.args:
+			username = str(request.args['username'])
+			password = str(request.args['password'])
+			if rg(username,password):
+				return ("User successfully registered as "+username)
+			else:
+				return ("Failed to register username")
+		else:
+			return("the parameters are wrong!")
+	except Exception as e:
+		return (str(e))
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
