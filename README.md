@@ -97,3 +97,37 @@ Value | information
 --- | ---
 User successfully logged in as {{username}}} | Success 
 wrong username or password | wrong credential
+
+
+### Collect /collect  
+let the user collect a word
+
+**Request Parameters:**  
+
+Parameter| Type | Value
+--- | --- | ---
+`word`| string | the word that is collected, maximum 50 characters
+
+**Return format:**  
+
+Value | information
+--- | ---
+Collect Successful | The collect the recorded in the database
+Bad request | Either the user is not logged in or the word is not found.
+
+### GetStat /getstat  
+get all the statistics about the logged in user
+
+**Request Parameters:**  
+
+No parameter needed
+
+**Return format:**  
+
+Value | information
+--- | ---
+username | the username of the user 
+score | the score of the user 
+words | an array of words representing all the words collected by the user
+
+

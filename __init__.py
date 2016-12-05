@@ -1,6 +1,6 @@
 from flask import Flask, request, url_for, session, redirect
 from connectdb import connection
-from findword import fword,pword
+from operation import fword, pword, cword, stat
 from userlogin import register as rg, login as lg
 
 app = Flask(__name__)
@@ -9,17 +9,26 @@ if __name__ == "__main__":
     app.run(debug=True)
 @app.route("/")
 def hello():
-	return "this bad boy is working!"
+    try:
+        if session['logged_in']:
+            return (session['username'])
+    except Exception as e:
+        return str(e)
+	return ("this bad boy is working!")
+
 @app.route("/getWord", methods=['GET'])
 def getWord():
 	if 'long' in request.args and 'lat' in request.args and 'radius' in request.args and 'ids' in request.args:
-		longitude = float(request.args["long"])
-		latitude = float(request.args["lat"])
-		radius = float(request.args["radius"])
-		ids = request.args.getlist("ids")
 		try:
-			j = fword(longitude,latitude,radius,ids)
-			return j
+			longitude = float(request.args["long"])
+			latitude = float(request.args["lat"])
+			radius = float(request.args["radius"])
+			ids = request.args.getlist("ids")
+		except:
+			return "Bad Request Parameters"
+		try:
+			allwords_json = fword(longitude,latitude,radius,ids)
+			return allwords_json
 		except Exception as e:
 			return str(e)
 	else:
@@ -38,8 +47,7 @@ def postWord():
 			return str(e)
 	else:
 		return "badPost"
-		
-		
+
 @app.route("/login",methods=["GET","POST"])
 def login():
 	try:
@@ -56,7 +64,8 @@ def login():
 			return "bad request"
 	except Exception as e:
 		return (str(e))
-@app.route("/register",methods=["GET","POST"])
+
+@app.route("/register", methods=["GET","POST"])
 def register():
 	try:
 		if 'username' in request.args and 'password' in request.args:
@@ -70,24 +79,28 @@ def register():
 			return("the parameters are wrong!")
 	except Exception as e:
 		return (str(e))
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+
+@app.route("/collect", methods=["GET","POST"])
+def collect():
+	try:
+		if 'word' in request.args and session['logged_in']:
+			try:
+				return cword(request.args['word'], session['username'])
+			except Exception as e:
+				return str(e)
+		else:
+			return "bad request"
+	except Exception as e:
+		return str(e)
+
+@app.route("/getstat", methods=["GET","POST"])
+def getstat():
+    try:
+        if session['logged_in']:
+			stat_json = stat(session['username'])
+			return stat_json
+        else:
+            return "bad request"
+    except Exception as e:
+        return str(e)

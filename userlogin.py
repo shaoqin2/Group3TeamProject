@@ -13,11 +13,11 @@ def register(username, password):
 		return False
 	else:
 		c.execute("INSERT INTO users (username, password, collectedwords, totalscore) VALUES ( %s, %s, %s, %s )",(thwart(username) ,thwart(hash_passwd),0 ,0))
+		c.execute("INSERT INTO userstat (username, completed, score ) VALUES (%s,%s,%s)",(thwart(username), "", 0))
 		conn.commit()
 		c.close()
 		conn.close()
 		return True
-	
 def login(username, password):
 	c, conn = connection()
 	hash_passwd = str(sha256_crypt.encrypt(password))
