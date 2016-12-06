@@ -58,7 +58,7 @@ def stat(username):
         dict = {}
         u = c.fetchone()
         dict['username'] = username
-        dict['words'] = u[1]
+        dict['words'] = str(u[1]).split()
         dict['score'] = u[2]
         return json.dumps(dict)
     except Exception as e:

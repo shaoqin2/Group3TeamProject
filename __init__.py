@@ -84,9 +84,9 @@ def register():
 @app.route("/collect", methods=["GET","POST"])
 def collect():
 	try:
-		if 'word' in request.args and session['logged_in']:
+		if 'word' in request.args and 'username' in request.args:
 			try:
-				return cword(request.args['word'], session['username'])
+				return cword(request.args['word'], request.args['username'])
 			except Exception as e:
 				return str(e)
 		else:
@@ -94,11 +94,11 @@ def collect():
 	except Exception as e:
 		return str(e)
 
-@app.route("/getstat", methods=["GET","POST"])
+@app.route("/getstat", methods=["GET"])
 def getstat():
     try:
-        if session['logged_in']:
-			stat_json = stat(session['username'])
+        if 'username' in request.args:
+			stat_json = stat(request.args['username'])
 			return stat_json
         else:
             return "bad request"

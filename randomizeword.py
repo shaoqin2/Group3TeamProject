@@ -2,23 +2,33 @@ from connectdb import connection
 import MySQLdb
 import random
 import urllib2
+import unirest
+import json
 def randomize_1000():
-	try:	
-		c,conn = connection()
-		baselong = 40.073410
-		baselat = -88.304178
-		for i in xrange(15):
-			templong = baselong + random.random()*0.06
-			templat = baselat + random.random()*0.141
-			word = str(urllib2.urlopen("http://randomword.setgetgo.com/get.php").read())
-			c.execute("INSERT INTO wordlocation (word,longitude,latitude,definition,lang) VALUES(%s,%s,%s,%s,%s)",
-			(word,templong,templat,'I honestly dont know','english'))
-		conn.commit()
-		c.execute("SELECT * FROM wordlocation")
-		for row in c.fetchall():
-			print str(row)
-		c.close()
-		return
-	except Exception as e:
-		return str(e)
+    c,conn = connection()
+    baselong = 40.073410
+    baselat = -88.304178
+    count = 0
+    for i in xrange(1900):
+        templong = baselong + random.random()*0.06
+        templat = baselat + random.random()*0.141
+        word = str(urllib2.urlopen("http://randomword.setgetgo.com/get.php").read())
+        url = 'https://wordsapiv1.p.mashape.com/words/' + 'incredible' + '/definitions'
+        response = unirest.get("https://wordsapiv1.p.mashape.com/words/%s/definitions"%word,
+          headers={
+            "X-Mashape-Key": "sDU8ttxskJmshjTCNb5eIoOF6NQ3p1OylfwjsnQ7yJzrrzYe9o",
+            "Accept": "application/json"
+          }
+        )
+        try:
+            defi =  response.body['definitions'][0]['definition']
+            c.execute("INSERT INTO wordlocation (word,longitude,latitude,definition,lang) VALUES(%s,%s,%s,%s,%s)",(word,templong,templat,defi,'english'))
+	    print count
+	    count += 1
+        except:
+            continue
+        
+    conn.commit()
+    c.close()
+    return
 randomize_1000()
