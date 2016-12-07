@@ -2,9 +2,12 @@
 
 This is the documentation for the word picking game. The backend keep track of all the geological words and user information
 
+
+# THE SERVER HAVE BEEN SHUT DOWN AFTER THE PRESENTATION! RIP SERVER!
 # API reference  
 
 45.55.248.135
+
 
 ## Endpoints  
 
