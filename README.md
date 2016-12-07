@@ -3,7 +3,7 @@
 This is the documentation for the word picking game. The backend keep track of all the geological words and user information
 
 
-# The server have been shutdown after the presentation, RIP server, I will miss you!
+# The server will shutdown on Janurary 1st, RIP server, I will miss you!
 # API reference  
 
 45.55.248.135
