@@ -1,8 +1,11 @@
-
 import MySQLdb
 from connectdb import connection
 from MySQLdb import escape_string as thwart
 import json
+import logging
+
+logging.basicConfig(filename='operation_log.txt',level=logging.DEBUG)
+
 def fword(lon,lat,radius,ids):
     try:
         result = {}
@@ -25,7 +28,7 @@ def fword(lon,lat,radius,ids):
         conn.close()
         return j
     except Exception as e:
-        return str(e)
+        logging.info(str(e))
 
 def pword(lat,lng,word,definition):
     try:
@@ -37,7 +40,7 @@ def pword(lat,lng,word,definition):
         conn.close()
         return "success!"
     except Exception as e:
-        return str(e)
+        logging.info(str(e))
 
 def cword(word, username):
     try:
@@ -49,7 +52,7 @@ def cword(word, username):
         conn.close()
         return "successful collect"
     except Exception as e:
-        return str(e)
+        logging.info(str(e))
 
 def stat(username):
     try:
@@ -62,4 +65,4 @@ def stat(username):
         dict['score'] = u[2]
         return json.dumps(dict)
     except Exception as e:
-        return str(e)
+        logging.info(str(e))
