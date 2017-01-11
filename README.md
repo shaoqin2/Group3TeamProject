@@ -2,6 +2,8 @@
 
 This is the documentation for the word picking game. The backend keep track of all the geological words and user information
 
+This is the Very first project in my life. I apologize its not modular, not properly named, not PEP 8.
+
 # API reference  
 
 45.55.248.135
