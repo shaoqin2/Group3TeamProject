@@ -4,9 +4,12 @@ This is the documentation for the word picking game. The backend keep track of a
 
 This is the Very first project in my life. I apologize its not modular, not properly named, not PEP 8.
 
+# The server will shutdown on Janurary 1st, RIP server, I will miss you!
+
 # API reference  
 
 45.55.248.135
+
 
 ## Endpoints  
 
@@ -99,3 +102,41 @@ Value | information
 --- | ---
 User successfully logged in as {{username}}} | Success 
 wrong username or password | wrong credential
+
+
+### POST /collect  
+let the user collect a word
+
+**Request Parameters:**  
+
+Parameter| Type | Value
+--- | --- | ---
+`word`| string | the word that is collected, maximum 50 characters
+`username`| string | username of the user
+
+**Return format:**  
+
+Value | information
+--- | ---
+Collect Successful | The collect the recorded in the database
+Bad request | Either the user is not logged in or the word is not found.
+
+### GET /getstat  
+get all the statistics about the logged in user
+
+**Request Parameters:**  
+
+Parameter| Type | Value
+--- | --- | ---
+`word`| string | the word that is collected, maximum 50 characters
+`username`| string | username of the user
+
+**Return format:**  
+
+Value | information
+--- | ---
+username | the username of the user 
+score | the score of the user 
+words | an array of words representing all the words collected by the user
+
+
