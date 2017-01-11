@@ -2,20 +2,20 @@ from flask import Flask, request, url_for, session, redirect
 from connectdb import connection
 from operation import fword, pword, cword, stat
 from userlogin import register as rg, login as lg
-
+import logging
 app = Flask(__name__)
 
 if __name__ == "__main__":
     app.run(debug=True)
+logging.basicConfig(filename='/home/logs.txt', level=logging.DEBUG)
+
 @app.route("/")
 def hello():
     try:
         if session['logged_in']:
             return (session['username'])
     except Exception as e:
-        return str(e)
-	return ("this bad boy is working!")
-
+        logging.info(str(e))
 @app.route("/getWord", methods=['GET'])
 def getWord():
 	if 'long' in request.args and 'lat' in request.args and 'radius' in request.args and 'ids' in request.args:
@@ -30,7 +30,7 @@ def getWord():
 			allwords_json = fword(longitude,latitude,radius,ids)
 			return allwords_json
 		except Exception as e:
-			return str(e)
+			logging.info(str(e))
 	else:
 		return "bad request"
 
@@ -44,7 +44,7 @@ def postWord():
 			definition = str(request.args['definition'])
 			return pword(lat,lng,word,definition)
 		except Exception as e:
-			return str(e)
+			logging.info(str(e))
 	else:
 		return "badPost"
 
@@ -63,7 +63,7 @@ def login():
 		else:
 			return "bad request"
 	except Exception as e:
-		return (str(e))
+                logging.info(str(e))
 
 @app.route("/register", methods=["GET","POST"])
 def register():
@@ -78,7 +78,7 @@ def register():
 		else:
 			return("the parameters are wrong!")
 	except Exception as e:
-		return (str(e))
+                logging.info(str(e))
 
 
 @app.route("/collect", methods=["GET","POST"])
@@ -88,11 +88,11 @@ def collect():
 			try:
 				return cword(request.args['word'], request.args['username'])
 			except Exception as e:
-				return str(e)
+				logging.info(str(e))
 		else:
 			return "bad request"
 	except Exception as e:
-		return str(e)
+		logging.info(str(e))
 
 @app.route("/getstat", methods=["GET"])
 def getstat():
@@ -103,4 +103,4 @@ def getstat():
         else:
             return "bad request"
     except Exception as e:
-        return str(e)
+        logging.info(str(e))
