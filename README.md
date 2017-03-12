@@ -2,13 +2,9 @@
 
 This is the documentation for the word picking game. The backend keep track of all the geological words and user information
 
-This is the Very first project in my life. I apologize its not modular, not properly named, not PEP 8.
+# API reference
 
-# The server will shutdown on Janurary 1st, RIP server, I will miss you!
-
-# API reference  
-
-45.55.248.135
+The server is currently not running. I do have plan to rerun the server in the 2017 summer and put this game on google android market
 
 
 ## Endpoints  
@@ -21,8 +17,8 @@ Get information of all the words in a certain area
 
 Parameter| Type | Value
 --- | --- | ---
-`long`| float | the geological longitude of the user(champaign urbana area)
-`lat`| float | the geological latitude of the user(champaign urbana area)
+`longitude`| float | the geological longitude of the user(champaign urbana area)
+`latitude`| float | the geological latitude of the user(champaign urbana area)
 `radius`| float | the radius of the circle that the words would be in
 `ids`| integer list | the ids of the the words the user does not want. could have multiple ids parameter. API take it as a list  
 
@@ -52,8 +48,8 @@ Post a word into the database with all related information
 
 Parameter| Type | Value
 --- | --- | ---
-`long`| float | the geological longitude of the word(champaign urbana area)
-`lat`| float | the geological latitude of the word(champaign urbana area)
+`longitude`| float | the geological longitude of the word(champaign urbana area)
+`latitude`| float | the geological latitude of the word(champaign urbana area)
 `word`| string | the word
 `definition`| string | definition of the word  
 
